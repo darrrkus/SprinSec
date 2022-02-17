@@ -1,6 +1,7 @@
 package com.tvsolutions.controllers;
 
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,7 +40,7 @@ public class MainController {
     }
 
     @GetMapping("/profile")
-    @Secured({"READ_PROFILE"})
+    @PreAuthorize("hasAuthority('READ_PROFILE')")
     String profilePage(Principal principal, Model model){
 
         if(principal!=null) {
